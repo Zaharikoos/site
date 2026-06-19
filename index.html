@@ -383,13 +383,13 @@ html.modal-open { overflow: hidden; height: 100%; }
   .dress-slider { gap: 8px; }
   .slider-arrow { width: 36px; height: 36px; font-size: 13px; }
   .slider-slide img { max-height: 50vh; }
-#openFormBtn {
+ #rsvpFormWrapper {
     display: none;
   }
 
-  #rsvpFormWrapper {
-    display: block !important;
-    margin-top: 20px;
+  #openFormBtn {
+    display: block;
+    margin: 20px auto;
   }
   #showMoreGifts { display: none; }
   .gift-photos img { width: 90px; height: 90px; }
@@ -2187,6 +2187,18 @@ document.querySelector('.close-modal').addEventListener('click', () => {
   unlockBodyScroll();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('openFormBtn');
+  const form = document.getElementById('rsvpFormWrapper');
+
+  if (btn && form) {
+    btn.addEventListener('click', function() {
+      form.style.display = 'block';
+      btn.style.display = 'none';
+    });
+  }
+});
+
 /* ─── RSVP ФОРМА ─── */
 const openFormBtn    = document.getElementById('openFormBtn');
 const rsvpFormWrapper = document.getElementById('rsvpFormWrapper');
@@ -2197,6 +2209,8 @@ if (window.innerWidth <= 768) {
     openFormBtn.textContent = rsvpFormWrapper.classList.contains('active') ? 'Скрыть анкету' : 'Заполнить анкету';
   });
 }
+
+
 
 document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
   e.preventDefault();
