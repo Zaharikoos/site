@@ -383,9 +383,14 @@ html.modal-open { overflow: hidden; height: 100%; }
   .dress-slider { gap: 8px; }
   .slider-arrow { width: 36px; height: 36px; font-size: 13px; }
   .slider-slide img { max-height: 50vh; }
-  #openFormBtn { display: block; width: 100%; margin-top: 20px; }
-  #rsvpFormWrapper { display: none; }
-  #rsvpFormWrapper.active { display: block; margin-top: 20px; }
+#openFormBtn {
+    display: none;
+  }
+
+  #rsvpFormWrapper {
+    display: block !important;
+    margin-top: 20px;
+  }
   #showMoreGifts { display: none; }
   .gift-photos img { width: 90px; height: 90px; }
 }
@@ -524,7 +529,6 @@ html.modal-open { overflow: hidden; height: 100%; }
         background: #6e5f5c;
         color: #fff;
         border: none;
-        width: 175px;
         padding: 15px 25px;
         cursor: pointer;
         font-size: 15px;
@@ -656,9 +660,9 @@ html.modal-open { overflow: hidden; height: 100%; }
       <button class="slider-arrow slider-prev" type="button" aria-label="Предыдущее фото">&#10094;</button>
       <div class="slider-viewport">
         <div class="slider-track" id="dressSliderTrack">
-          <div class="slider-slide"><img src="IMG_0258.JPG" alt="Пример"></div>
+          <div class="slider-slide"><img src="./IMG_0258.JPG" alt="Пример"></div>
           <div class="slider-slide"><img src="./IMG_0279.JPG" alt="Пример образа 2"></div>
-          <div class="slider-slide"><img src="IMG_0256.JPG" alt="Пример образа 3"></div>
+          <div class="slider-slide"><img src="./IMG_0256.JPG" alt="Пример образа 3"></div>
         </div>
       </div>
       <button class="slider-arrow slider-next" type="button" aria-label="Следующее фото">&#10095;</button>
@@ -684,12 +688,12 @@ html.modal-open { overflow: hidden; height: 100%; }
     <div class="divider"><span></span><div class="dot"></div><span></span></div>
   </div>
   <div class="program-list">
-    <div class="program-item"><div class="program-time">14:00</div><div><div class="program-event-title">Welcome зона</div><div class="program-event-desc">Тёплая встреча, общение и живая музыка. Время познакомиться и насладиться атмосферой праздника.</div></div></div>
-    <div class="program-item"><div class="program-time">15:00</div><div><div class="program-event-title">Венчание</div><div class="program-event-desc">Торжественная роспись, обмен клятвами и кольцами в окружении самых близких людей.</div></div></div>
-    <div class="program-item"><div class="program-time">16:00</div><div><div class="program-event-title">Поздравления гостей</div><div class="program-event-desc">Фотография на память молодые и гости. Прогулка и первые снимки как семья.</div></div></div>
-    <div class="program-item"><div class="program-time">17:30</div><div><div class="program-event-title">Ужин и программа</div><div class="program-event-desc">Изысканный ужин, тосты, музыка и танцы в честь новой семьи. Вечер, который запомнится навсегда.</div></div></div>
-    <div class="program-item"><div class="program-time">20:30</div><div><div class="program-event-title">Свадебный торт</div><div class="program-event-desc">Торт, живая музыка, танцпол открыт для всех. Праздник продолжается!</div></div></div>
-    <div class="program-item"><div class="program-time">21:00</div><div><div class="program-event-title">Завершение вечера</div><div class="program-event-desc">Финальные моменты, тёплые объятия и счастливые воспоминания на всю жизнь.</div></div></div>
+    <div class="program-item"><div class="program-time">15:00</div><div><div class="program-event-title">Welcome зона</div><div class="program-event-desc">Тёплая встреча, общение и живая музыка. Время познакомиться и насладиться атмосферой праздника.</div></div></div>
+    <div class="program-item"><div class="program-time">16:00</div><div><div class="program-event-title">Венчание</div><div class="program-event-desc">Торжественная роспись, обмен клятвами и кольцами в окружении самых близких людей.</div></div></div>
+    <div class="program-item"><div class="program-time">17:00</div><div><div class="program-event-title">Поздравления гостей</div><div class="program-event-desc">Фотография на память молодые и гости. Прогулка и первые снимки как семья.</div></div></div>
+    <div class="program-item"><div class="program-time">18:30</div><div><div class="program-event-title">Ужин и программа</div><div class="program-event-desc">Изысканный ужин, тосты, музыка и танцы в честь новой семьи. Вечер, который запомнится навсегда.</div></div></div>
+    <div class="program-item"><div class="program-time">21:30</div><div><div class="program-event-title">Свадебный торт</div><div class="program-event-desc">Торт, живая музыка, танцпол открыт для всех. Праздник продолжается!</div></div></div>
+    <div class="program-item"><div class="program-time">22:00</div><div><div class="program-event-title">Завершение вечера</div><div class="program-event-desc">Финальные моменты, тёплые объятия и счастливые воспоминания на всю жизнь.</div></div></div>
   </div>
 </section>
 
@@ -757,7 +761,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Блендер"
     >
       Забронировать
     </button>
@@ -797,7 +801,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Набор Кружек"
     >
       Забронировать
     </button>
@@ -840,12 +844,12 @@ html.modal-open { overflow: hidden; height: 100%; }
     </div>
 
     <div class="gift-photos">
-      <img src="/wishlist/1-1.jpg" alt="">
-      <img src="/wishlist/1-2.jpg" alt="">
+      <img src="wishlist/1-1.jpg" alt="">
+      <img src="wishlist/1-2.jpg" alt="">
     </div>
 
     <button class="reserve-btn"
-            data-gift="Мультиварка">
+            data-gift="Постельное белье">
       Забронировать
     </button>
 
@@ -892,7 +896,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Набор Посуды (184 зл)"
     >
       Забронировать
     </button>
@@ -954,7 +958,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Набор Для Уюта (187 зл)"
     >
       Забронировать
     </button>
@@ -997,7 +1001,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Отпариватель"
     >
       Забронировать
     </button>
@@ -1066,7 +1070,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Набор для Кухни 1"
     >
       Забронировать
     </button>
@@ -1126,7 +1130,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Набор для Шкафа"
     >
       Забронировать
     </button>
@@ -1211,7 +1215,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Набор Для Кухни 2"
     >
       Забронировать
     </button>
@@ -1258,7 +1262,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Набор Для Уюта (235 зл)"
     >
       Забронировать
     </button>
@@ -1301,7 +1305,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Паровая Швабра"
     >
       Забронировать
     </button>
@@ -1344,7 +1348,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Аэрогриль"
     >
       Забронировать
     </button>
@@ -1421,7 +1425,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Набор для Дома 2"
     >
       Забронировать
     </button>
@@ -1464,7 +1468,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Набор Посуды (299 зл)"
     >
       Забронировать
     </button>
@@ -1515,7 +1519,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Набор Для Кофе"
     >
       Забронировать
     </button>
@@ -1558,7 +1562,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Проэктор Для Кино"
     >
       Забронировать
     </button>
@@ -1601,7 +1605,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Пылесос"
     >
       Забронировать
     </button>
@@ -1646,7 +1650,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Робот Пылесос"
     >
       Забронировать
     </button>
@@ -1689,7 +1693,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Утюг"
     >
       Забронировать
     </button>
@@ -1730,7 +1734,7 @@ html.modal-open { overflow: hidden; height: 100%; }
 
     <button 
       class="reserve-btn"
-      data-gift="Мультиварка"
+      data-gift="Набор кастрюль"
     >
       Забронировать
     </button>
