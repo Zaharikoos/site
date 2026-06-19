@@ -50,7 +50,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--f-main); fo
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(240,235,225,0.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); padding: 0 40px; height: 52px; display: flex; align-items: center; justify-content: center; gap: 40px; }
 nav a { font-family: var(--f-mono); font-size: 11px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); text-decoration: none; transition: color 0.2s; }
 nav a:hover { color: var(--text); }
-
+.rsvp-li{display: none;}
 .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 52px; }
 .hero-left { position: relative; background: #f4f1e8; padding: 80px; display: flex; align-items: center; }
 .hero-names { display: flex; flex-direction: column; gap: 10px; font-family: var(--f-cormo); font-weight: 300; line-height: 1; }
@@ -82,10 +82,36 @@ nav a:hover { color: var(--text); }
 
 .dress-modal { position: fixed; inset: 0; background: rgba(0,0,0,.55); display: none; align-items: center; justify-content: center; z-index: 1000; }
 .dress-modal.active { display: flex; }
-.dress-content { background: #F2EEE6; max-width: 1100px; width: 92%; padding: 40px; position: relative; border-radius: 10px; }
+.dress-content {
+  background: #F2EEE6;
+  max-width: 1100px;
+  width: 92%;
+  padding: 40px;
+  position: relative;
+  border-radius: 10px;
+
+  max-height: 90vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+.dress-modal {
+  overflow-y: auto;
+}
 .close-btn { position: absolute; top: 15px; right: 20px; font-size: 34px; border: none; background: none; cursor: pointer; }
 .dress-grid { margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
 .dress-grid img { width: 100%; border-radius: 8px; object-fit: cover; }
+
+.dress-slider { margin-top: 30px; display: flex; align-items: center; gap: 14px; }
+.slider-viewport { flex: 1; overflow: hidden; border-radius: 8px; background: #e8e0d4; }
+.slider-track { display: flex; transition: transform 0.45s ease; }
+.slider-slide { flex: 0 0 100%; width: 100%; display: flex; align-items: center; justify-content: center; }
+.slider-slide img { width: 100%; max-height: 65vh; object-fit: contain; display: block; }
+.slider-arrow { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; border: none; background: #756764; color: #fff; font-size: 16px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s; }
+.slider-arrow:hover { opacity: 0.85; }
+.slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+.slider-dot { width: 8px; height: 8px; border-radius: 50%; border: none; padding: 0; background: #d4cabb; cursor: pointer; transition: background 0.3s, transform 0.3s; }
+.slider-dot.active { background: #766864; transform: scale(1.25); }
 
 .section-countdown { background: var(--bg-dark); padding: 140px 10px; text-align: center; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .countdown-label-top { font-family: var(--f-serif); font-weight: 400; font-size: 20px; color: #6b6b47; margin-bottom: 32px; }
@@ -146,7 +172,7 @@ nav a:hover { color: var(--text); }
 
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; align-items: center; justify-content: center; z-index: 1000; }
 .modal.active { display: flex; }
-.modal-content { background: var(--bg-alt); width: 90%; max-width: 800px; border-radius: 12px; padding: 30px; position: relative; }
+.modal-content { background: var(--bg-alt); width: 90%; max-width: 800px; border-radius: 12px; padding: 30px; position: relative; max-height: 85vh; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
 .modal-content h2 { font-family: var(--f-cormo); font-weight: 300; font-size: 32px; line-height: 1.38; padding-bottom: 20px; color: #7f7e7f; }
 .modal-content p { font-family: var(--f-main); font-weight: 400; font-size: 18px; color: #8d8b80; padding-top: 10px; }
 .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
@@ -229,6 +255,9 @@ nav a:hover { color: var(--text); }
 
 #rsvpFormWrapper { display: block; }
 #openFormBtn { display: none; }
+
+body.modal-open { overflow: hidden; height: 100%; }
+html.modal-open { overflow: hidden; height: 100%; }
 
 @media (max-width: 1279px) and (min-width: 1024px) {
   nav { gap: 24px; padding: 0 24px; }
@@ -351,6 +380,9 @@ nav a:hover { color: var(--text); }
   .map-btn { background: #60574e !important; color: #fff !important; font-family: var(--f-mono) !important; font-size: 12px !important; text-transform: uppercase !important; padding: 16px 32px !important; width: 240px !important; border: none !important; box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important; }
   .accordion-header { font-weight: 300; }
   .dress-btn { font-size: 22px; }
+  .dress-slider { gap: 8px; }
+  .slider-arrow { width: 36px; height: 36px; font-size: 13px; }
+  .slider-slide img { max-height: 50vh; }
   #openFormBtn { display: block; width: 100%; margin-top: 20px; }
   #rsvpFormWrapper { display: none; }
   #rsvpFormWrapper.active { display: block; margin-top: 20px; }
@@ -450,6 +482,110 @@ nav a:hover { color: var(--text); }
   .ornament{
     margin: 25px auto;
   }
+
+  .div-dresscode{
+    padding-top: 20px;
+  }
+
+  .wishes-list li {
+    padding-left: 0;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .rsvp-intro{
+    margin-bottom: 12px;
+  }
+
+  .dress-content h3{
+  text-align: center;
+}
+  
+  .wishlist-title{
+    margin-bottom: 0;
+  }
+  .mobile-open-btn{
+    margin-top: 50px;
+  }
+
+  .section-program{
+    background: var(--bg-light);
+  }
+
+  .program-event-title{
+    font-size: 22px;
+  }
+#openFormBtn{
+  width: 175px;
+}
+  .btn-submit{
+       margin: auto;
+        background: #6e5f5c;
+        color: #fff;
+        border: none;
+        width: 175px;
+        padding: 15px 25px;
+        cursor: pointer;
+        font-size: 15px;
+  }
+
+  .rsvp-li{
+    display: block;
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 50px;
+  }
+
+  .section-rsvp{
+    padding-top: 0;
+  }
+
+  .section-title{
+    padding-right: 10px;
+  }
+
+  .contacts-header{
+    margin-bottom: 15px;
+  }
+
+  .accordion-header{
+    font-size: 15px;
+  }
+
+  .contact-h2{
+    font-size: 20px;
+    font-family: var(--f-main);
+    font-weight: 200;
+    color: #000000;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .contact-note{
+    font-family: var(--f-main);
+    font-weight: 200;
+    font-size: 15px;
+    letter-spacing: 0.07em;
+    color: #7f7e7f;
+    margin: 15px 0;
+  }
+  .polaroid-card {
+        width: 140px;
+    }
+
+    .polaroid-image-wrapper {
+        height: 154px;
+    }
+
+    .dress-modal {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.dress-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
 }
 
 @media (max-width: 380px) {
@@ -516,14 +652,18 @@ nav a:hover { color: var(--text); }
   <div class="dress-content">
     <button class="close-btn">&times;</button>
     <h3>Примеры образов</h3>
-    <div class="dress-grid">
-      <img src="img/examples/look1.jpg" alt="">
-      <img src="img/examples/look2.jpg" alt="">
-      <img src="img/examples/look3.jpg" alt="">
-      <img src="img/examples/look4.jpg" alt="">
-      <img src="img/examples/look5.jpg" alt="">
-      <img src="img/examples/look6.jpg" alt="">
+    <div class="dress-slider">
+      <button class="slider-arrow slider-prev" type="button" aria-label="Предыдущее фото">&#10094;</button>
+      <div class="slider-viewport">
+        <div class="slider-track" id="dressSliderTrack">
+          <div class="slider-slide"><img src="dress-cod/IMG_0258.JPG" alt="Пример"></div>
+          <div class="slider-slide"><img src="dress-cod/IMG_0279.JPG" alt="Пример образа 2"></div>
+          <div class="slider-slide"><img src="dress-cod/IMG_0256.JPG" alt="Пример образа 3"></div>
+        </div>
+      </div>
+      <button class="slider-arrow slider-next" type="button" aria-label="Следующее фото">&#10095;</button>
     </div>
+    <div class="slider-dots" id="dressSliderDots"></div>
   </div>
 </div>
 
@@ -553,7 +693,7 @@ nav a:hover { color: var(--text); }
   </div>
 </section>
 
-<section id="wishes" style="padding: 90px 0; background: var(--bg);">
+<section id="wishes" style="padding: 90px 0; background: var(--bg-light);">
   <div class="section-wishes">
     <div class="wishes-header">
       <h2 class="section-title">Пожелания</h2>
@@ -1638,6 +1778,7 @@ nav a:hover { color: var(--text); }
 
 <section id="rsvp" class="section-rsvp">
   <div class="rsvp-inner">
+    <li class="rsvp-li"></li>
     <h2 class="section-title">Анкета Гостя</h2>
     <div class="divider"><span></span><div class="dot"></div><span></span></div>
     <p class="rsvp-intro">Мы очень стараемся сделать праздник незабываемым, поэтому будем рады, если вы подтвердите своё присутствие и заполните анкету ниже, чтобы мы учли все детали.</p>
@@ -1797,6 +1938,21 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 3500);
 }
 
+/* ─── БЛОКИРОВКА ПРОКРУТКИ ФОНА ПОД МОДАЛКАМИ (моб. фикс) ─── */
+let openModalsCount = 0;
+function lockBodyScroll() {
+  openModalsCount++;
+  document.documentElement.classList.add('modal-open');
+  document.body.classList.add('modal-open');
+}
+function unlockBodyScroll() {
+  openModalsCount = Math.max(0, openModalsCount - 1);
+  if (openModalsCount === 0) {
+    document.documentElement.classList.remove('modal-open');
+    document.body.classList.remove('modal-open');
+  }
+}
+
 /* ─── COUNTDOWN ─── */
 function updateCountdown() {
   const diff = new Date('2026-08-08T14:00:00') - new Date();
@@ -1824,11 +1980,59 @@ function toggleFaq(el) {
   }
 }
 
+/* ─── СЛАЙДЕР ПРИМЕРОВ ОБРАЗОВ ─── */
+const dressTrack    = document.getElementById('dressSliderTrack');
+const dressDotsWrap = document.getElementById('dressSliderDots');
+const dressSlides   = dressTrack ? Array.from(dressTrack.children) : [];
+let dressCurrent = 0;
+
+function goToDressSlide(i) {
+  if (!dressTrack || !dressSlides.length) return;
+  dressCurrent = (i + dressSlides.length) % dressSlides.length;
+  dressTrack.style.transform = `translateX(-${dressCurrent * 100}%)`;
+  Array.from(dressDotsWrap.children).forEach((d, idx) => d.classList.toggle('active', idx === dressCurrent));
+}
+
+if (dressTrack && dressDotsWrap) {
+  dressSlides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Фото ${i + 1}`);
+    dot.addEventListener('click', () => goToDressSlide(i));
+    dressDotsWrap.appendChild(dot);
+  });
+
+  document.querySelector('.slider-prev').addEventListener('click', () => goToDressSlide(dressCurrent - 1));
+  document.querySelector('.slider-next').addEventListener('click', () => goToDressSlide(dressCurrent + 1));
+
+  let dressTouchStartX = 0;
+  dressTrack.addEventListener('touchstart', e => { dressTouchStartX = e.touches[0].clientX; }, { passive: true });
+  dressTrack.addEventListener('touchend', e => {
+    const diff = e.changedTouches[0].clientX - dressTouchStartX;
+    if (Math.abs(diff) > 40) {
+      diff < 0 ? goToDressSlide(dressCurrent + 1) : goToDressSlide(dressCurrent - 1);
+    }
+  }, { passive: true });
+}
+
 /* ─── ДРЕСС-КОД МОДАЛ ─── */
 const dressModal = document.getElementById('dressModal');
-document.getElementById('openDress').addEventListener('click', () => dressModal.classList.add('active'));
-document.querySelector('.close-btn').addEventListener('click', () => dressModal.classList.remove('active'));
-dressModal.addEventListener('click', e => { if (e.target === dressModal) dressModal.classList.remove('active'); });
+document.getElementById('openDress').addEventListener('click', () => {
+  dressModal.classList.add('active');
+  lockBodyScroll();
+  goToDressSlide(0);
+});
+document.querySelector('.close-btn').addEventListener('click', () => {
+  dressModal.classList.remove('active');
+  unlockBodyScroll();
+});
+dressModal.addEventListener('click', e => {
+  if (e.target === dressModal) {
+    dressModal.classList.remove('active');
+    unlockBodyScroll();
+  }
+});
 
 /* ─── РАСКРЫТИЕ КАРТОЧЕК ПОДАРКОВ ─── */
 function initGiftToggles(container) {
@@ -1851,12 +2055,16 @@ function initPhotoClicks(container) {
     img.addEventListener('click', () => {
       modalImage.src = img.src;
       photoModal.classList.add('active');
+      lockBodyScroll();
     });
   });
 }
 initPhotoClicks(document);
 
-photoModal.addEventListener('click', () => photoModal.classList.remove('active'));
+photoModal.addEventListener('click', () => {
+  photoModal.classList.remove('active');
+  unlockBodyScroll();
+});
 
 /* ─── ПОКАЗАТЬ ЕЩЁ ─── */
 const showMoreBtn   = document.getElementById('showMoreGifts');
@@ -1918,6 +2126,7 @@ function openReserve(giftName, btn) {
   currentBtn  = btn;
   giftText.textContent = `Вы уверены, что хотите забронировать "${giftName}"?`;
   reserveModal.classList.add('active');
+  lockBodyScroll();
 }
 
 function initReserveBtns(container) {
@@ -1934,12 +2143,19 @@ document.getElementById('confirmReserve').addEventListener('click', async () => 
   if (currentBtn) applyReserved(currentBtn);
   await sendTelegram(`🎁 <b>Подарок забронирован!</b>\n\nГость хочет подарить: <b>${currentGift}</b>`);
   reserveModal.classList.remove('active');
+  unlockBodyScroll();
   showToast(`✓ "${currentGift}" забронирован!`);
   currentBtn = null;
 });
 
-document.querySelector('.close-reserve').addEventListener('click', () => reserveModal.classList.remove('active'));
-document.getElementById('cancelReserve').addEventListener('click',  () => reserveModal.classList.remove('active'));
+document.querySelector('.close-reserve').addEventListener('click', () => {
+  reserveModal.classList.remove('active');
+  unlockBodyScroll();
+});
+document.getElementById('cancelReserve').addEventListener('click',  () => {
+  reserveModal.classList.remove('active');
+  unlockBodyScroll();
+});
 
 /* ─── МОБИЛЬНЫЙ СПИСОК ПОДАРКОВ ─── */
 const wishlistModal   = document.getElementById('wishlistModal');
@@ -1953,12 +2169,19 @@ if (openWishlistBtn) {
     initPhotoClicks(mobileList);
     initReserveBtns(mobileList);
     mobileList.querySelectorAll('.reserve-btn').forEach(btn => {
-      btn.addEventListener('click', () => wishlistModal.classList.remove('active'));
+      btn.addEventListener('click', () => {
+        wishlistModal.classList.remove('active');
+        unlockBodyScroll();
+      });
     });
     wishlistModal.classList.add('active');
+    lockBodyScroll();
   });
 }
-document.querySelector('.close-modal').addEventListener('click', () => wishlistModal.classList.remove('active'));
+document.querySelector('.close-modal').addEventListener('click', () => {
+  wishlistModal.classList.remove('active');
+  unlockBodyScroll();
+});
 
 /* ─── RSVP ФОРМА ─── */
 const openFormBtn    = document.getElementById('openFormBtn');
